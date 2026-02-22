@@ -6,9 +6,17 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #0f2027, #000000);
+  background: black;
   color: white;
   text-align: center;
+  overflow-x: hidden;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 section {
@@ -53,17 +61,13 @@ h2 {
   border: 1px solid #00ffcc;
 }
 
-.projects {
-  max-width: 800px;
-  margin: auto;
-}
-
 .project {
   background: #001f1c;
-  margin: 15px 0;
+  margin: 15px auto;
   padding: 20px;
   border-radius: 10px;
   border: 1px solid #00ffcc;
+  max-width: 700px;
 }
 
 button {
@@ -93,7 +97,9 @@ footer {
   padding: 20px;
   color: #888;
 }
-</style></head><body><section>
+</style></head><body><canvas id="matrix"></canvas>
+
+<section>
 <img src="profile.jpg" class="profile-img">
 <h1>Welcome to My Website</h1>
 <p id="typing"></p>
@@ -105,19 +111,21 @@ footer {
 <h2>Skills</h2>
 <div class="skills">
 <div class="skill">HTML</div>
-<div class="skill">Cybersecurity Basics</div>
+<div class="skill">Cybersecurity</div>
 <div class="skill">Networking</div>
 <div class="skill">Linux</div>
 <div class="skill">Ethical Hacking</div>
 </div>
-</section><section class="projects">
-<h2>Projects</h2><div class="project">
+</section><section>
+<h2>Projects</h2>
+<div class="project">
 <h3>My First Website</h3>
 <p>This portfolio website hosted on GitHub Pages.</p>
 </div><div class="project">
 <h3>Cybersecurity Learning</h3>
-<p>Currently learning penetration testing and online security.</p>
-</div></section><section>
+<p>Currently learning penetration testing and security basics.</p>
+</div>
+</section><section>
 <h2>Contact</h2>
 <div class="links">
 <a href="#">Instagram</a>
@@ -138,11 +146,45 @@ function typeEffect() {
     setTimeout(typeEffect, 40);
   }
 }
-
 typeEffect();
 
 function showMessage() {
-  alert("Thanks for visiting my portfolio!");
+  alert("Thanks for visiting my website!");
 }
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for (let x = 0; x < columns; x++) {
+  drops[x] = 1;
+}
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ffcc";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 33);
 </script></body>
 </html>
