@@ -2,10 +2,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel | Cybersecurity Terminal</title><style>
+<title>Daniel | Cybersecurity Dashboard</title><style>
 body{
 margin:0;
-background:black;
+background:#000;
 color:#00ff9c;
 font-family:monospace;
 overflow:hidden;
@@ -18,15 +18,43 @@ left:0;
 z-index:-1;
 }
 
+#login{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+}
+
+#login input{
+background:black;
+border:1px solid #00ff9c;
+color:#00ff9c;
+padding:10px;
+margin-top:10px;
+}
+
+#dashboard{
+display:none;
+height:100vh;
+}
+
+#topbar{
+display:flex;
+justify-content:space-between;
+padding:10px;
+border-bottom:1px solid #00ff9c;
+}
+
 #container{
 display:flex;
-height:100vh;
+height:calc(100vh - 40px);
 }
 
 #terminal{
 flex:2;
 padding:20px;
-overflow-y:auto;
+overflow:auto;
 }
 
 #panel{
@@ -36,62 +64,74 @@ padding:20px;
 background:rgba(0,0,0,0.85);
 }
 
-h2{
-margin-top:0;
-}
-
-.line{
-margin:5px 0;
+.status{
+border:1px solid #00ff9c;
+padding:10px;
+margin-bottom:10px;
 }
 
 input{
 background:black;
 border:none;
 color:#00ff9c;
-font-family:monospace;
-font-size:16px;
 outline:none;
 width:80%;
 }
 
-.status{
-margin-bottom:15px;
-border:1px solid #00ff9c;
-padding:10px;
-}
-
-.blink{
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-50%{opacity:0}
-}
+.line{margin:4px 0;}
 </style></head><body><canvas id="matrix"></canvas>
 
-<div id="container"><div id="terminal"><div>
-██████╗  █████╗ ███╗   ██╗██╗███████╗██╗
-Cybersecurity Command Console
-</div><div id="scan"></div><div id="output"></div><div class="line">
-Daniel@secure:~$ <input id="cmd" autofocus>
-</div></div><div id="panel"><h2>System Monitor</h2><div class="status" id="visitor"></div>
-<div class="status" id="security"></div>
-<div class="status" id="network"></div><h2>Profile</h2>
-<p>Name: Daniel</p>
-<p>Role: Cybersecurity Student</p>
-<p>Focus: Ethical Hacking</p></div></div><script>
+<div id="login">
+<h2>Secure Access</h2>
+<p>Enter Access Key</p>
+<input id="key" placeholder="access key">
+<br><br>
+<button onclick="enter()">Enter</button>
+<p>Hint: access</p>
+</div><div id="dashboard"><div id="topbar">
+<div>Cybersecurity Control Center</div>
+<div id="clock"></div>
+<div id="visitors"></div>
+</div><div id="container"><div id="terminal">
+<div>Secure Terminal Ready</div>
+<div id="output"></div>
+<div class="line">
+Daniel@system:~$ <input id="cmd">
+</div>
+</div><div id="panel"><h3>System Status</h3><div class="status">Firewall: Active</div>
+<div class="status">Encryption: Enabled</div>
+<div class="status">Threat Level: Low</div><h3>Skills</h3>
+<p>Linux</p>
+<p>Networking</p>
+<p>Web Security</p>
+<p>Python</p><h3>Projects</h3>
+<p>Security Lab</p>
+<p>Practice Exploits</p>
+<p>Cyber Tools</p></div></div></div><script>
+
+/* LOGIN */
+function enter(){
+let key = document.getElementById("key").value;
+if(key === "access"){
+document.getElementById("login").style.display="none";
+document.getElementById("dashboard").style.display="block";
+}
+else{
+alert("Access Denied");
+}
+}
 
 /* MATRIX */
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.height=window.innerHeight;
+canvas.width=window.innerWidth;
 
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = [];
+const letters="01";
+const fontSize=14;
+const columns=canvas.width/fontSize;
+const drops=[];
 
 for(let x=0;x<columns;x++) drops[x]=1;
 
@@ -103,7 +143,7 @@ ctx.fillStyle="#00ff9c";
 ctx.font=fontSize+"px monospace";
 
 for(let i=0;i<drops.length;i++){
-const text=letters.charAt(Math.floor(Math.random()*letters.length));
+let text=letters.charAt(Math.floor(Math.random()*letters.length));
 ctx.fillText(text,i*fontSize,drops[i]*fontSize);
 
 if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
@@ -115,79 +155,52 @@ drops[i]++;
 
 setInterval(draw,35);
 
-/* FAKE VISITOR DETECTION */
-document.getElementById("visitor").innerHTML =
-"Visitor Detected<br>Status: Active";
-
-document.getElementById("security").innerHTML =
-"Firewall: Enabled<br>Threat Level: Low";
-
-document.getElementById("network").innerHTML =
-"Network: Secure<br>Monitoring: ON";
-
-/* SCAN ANIMATION */
-const scan = document.getElementById("scan");
-
-let steps = [
-"Initializing secure connection...",
-"Scanning visitor device...",
-"Checking security protocols...",
-"System ready."
-];
-
-let i = 0;
-
-function runScan(){
-if(i < steps.length){
-let line = document.createElement("div");
-line.className="line";
-line.textContent = steps[i];
-scan.appendChild(line);
-i++;
-setTimeout(runScan,1200);
+/* CLOCK */
+function updateClock(){
+let now=new Date();
+document.getElementById("clock").textContent=now.toLocaleTimeString();
 }
-}
+setInterval(updateClock,1000);
 
-runScan();
+/* VISITOR COUNTER */
+let count=Math.floor(Math.random()*100)+1;
+document.getElementById("visitors").textContent="Visitors: "+count;
 
 /* TERMINAL */
-const cmd = document.getElementById("cmd");
-const output = document.getElementById("output");
+const cmd=document.getElementById("cmd");
+const output=document.getElementById("output");
 
-const commands = {
-help: "Commands: about, skills, projects, contact, whoami, clear",
-about: "Daniel - Future Ethical Hacker learning cybersecurity.",
-skills: "Linux | Networking | Web Security | Python (learning)",
-projects: "Cybersecurity Portfolio | Security Labs | Practice Challenges",
-contact: "GitHub: https://github.com/power504-jpg",
-whoami: "Guest user connected to secure terminal"
+const commands={
+help:"Commands: about, skills, projects, contact, clear",
+about:"Daniel - Future Cybersecurity Expert",
+skills:"Linux | Networking | Web Security | Python",
+projects:"Cybersecurity Labs and Tools",
+contact:"GitHub: https://github.com/",
 };
 
-cmd.addEventListener("keydown", function(e){
-if(e.key === "Enter"){
+cmd.addEventListener("keydown",function(e){
+if(e.key==="Enter"){
+let value=cmd.value.toLowerCase();
 
-let value = cmd.value.trim().toLowerCase();
-
-let line = document.createElement("div");
-line.textContent = "Daniel@secure:~$ " + value;
+let line=document.createElement("div");
+line.textContent="Daniel@system:~$ "+value;
 output.appendChild(line);
 
-if(value === "clear"){
+if(value==="clear"){
 output.innerHTML="";
 }
 else if(commands[value]){
-let res = document.createElement("div");
-res.textContent = commands[value];
+let res=document.createElement("div");
+res.textContent=commands[value];
 output.appendChild(res);
 }
 else{
-let err = document.createElement("div");
-err.textContent = "Command not recognized.";
+let err=document.createElement("div");
+err.textContent="Unknown command";
 output.appendChild(err);
 }
 
 cmd.value="";
-window.scrollTo(0,document.body.scrollHeight);
 }
 });
 </script></body>
