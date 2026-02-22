@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> young savage | Cybersecurity Portfolio</title><style>
+<title>Daniel | Cybersecurity Portfolio</title><style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -11,8 +11,8 @@ body {
   text-align: center;
 }
 
-.container {
-  padding: 40px 20px;
+section {
+  padding: 60px 20px;
 }
 
 .profile-img {
@@ -22,12 +22,14 @@ body {
   border: 5px solid #00ffcc;
   box-shadow: 0 0 30px #00ffcc;
   object-fit: cover;
-  margin-top: 40px;
 }
 
 h1 {
   font-size: 40px;
-  margin-top: 20px;
+  color: #00ffd5;
+}
+
+h2 {
   color: #00ffd5;
 }
 
@@ -37,33 +39,35 @@ h1 {
   height: 30px;
 }
 
-.description {
-  max-width: 600px;
+.skills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.skill {
+  background: #001f1c;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #00ffcc;
+}
+
+.projects {
+  max-width: 800px;
   margin: auto;
-  color: #ccc;
 }
 
-.about {
-  margin-top: 50px;
-}
-
-.links {
-  margin-top: 20px;
-}
-
-.links a {
-  color: #00ffd5;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-}
-
-.links a:hover {
-  color: #ffffff;
+.project {
+  background: #001f1c;
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #00ffcc;
 }
 
 button {
-  margin-top: 35px;
+  margin-top: 25px;
   padding: 14px 35px;
   background: #00ffcc;
   border: none;
@@ -77,29 +81,53 @@ button:hover {
   background: #00e6b8;
 }
 
+.links a {
+  color: #00ffd5;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 footer {
-  margin-top: 70px;
+  margin-top: 40px;
+  padding: 20px;
   color: #888;
 }
-</style></head><body><div class="container"><img src="profile.jpg" class="profile-img"><h1>Welcome to My Website</h1>
-<p id="typing"></p><p class="description">
-This is my first real website. I'm learning coding, cybersecurity,
-and ethical hacking.
-</p><div class="about">
+</style></head><body><section>
+<img src="profile.jpg" class="profile-img">
+<h1>Welcome to My Website</h1>
+<p id="typing"></p>
+<p>I’m learning coding, cybersecurity and ethical hacking.</p>
+</section><section>
 <h2>About Me</h2>
-<p>
-My name is Daniel. I am starting my journey in cybersecurity
-and becoming a future ethical hacker.
-</p>
-</div><div class="links">
-<a href="#">Instagram</a> |
-<a href="#">Facebook</a> |
-<a href="mailto:your@email.com">Email Me</a>
-</div><button onclick="showMessage()">Enter Secure Zone</button>
+<p>My name is Daniel. I’m starting my journey into cybersecurity and becoming a future ethical hacker.</p>
+</section><section>
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill">HTML</div>
+<div class="skill">Cybersecurity Basics</div>
+<div class="skill">Networking</div>
+<div class="skill">Linux</div>
+<div class="skill">Ethical Hacking</div>
+</div>
+</section><section class="projects">
+<h2>Projects</h2><div class="project">
+<h3>My First Website</h3>
+<p>This portfolio website hosted on GitHub Pages.</p>
+</div><div class="project">
+<h3>Cybersecurity Learning</h3>
+<p>Currently learning penetration testing and online security.</p>
+</div></section><section>
+<h2>Contact</h2>
+<div class="links">
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+<a href="mailto:your@email.com">Email</a>
+</div><button onclick="showMessage()">Contact Me</button>
 
-<footer>
-<p>© 2026 Daniel | Cybersecurity Journey</p>
-</footer></div><script>
+</section><footer>
+© 2026 Daniel | Cybersecurity Portfolio
+</footer><script>
 const text = "Cybersecurity Student | Future Ethical Hacker";
 let i = 0;
 
@@ -114,7 +142,7 @@ function typeEffect() {
 typeEffect();
 
 function showMessage() {
-  alert("Access granted. Welcome to my cybersecurity portfolio.");
+  alert("Thanks for visiting my portfolio!");
 }
 </script></body>
 </html>
