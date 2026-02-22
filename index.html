@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel | Cyber Terminal</title><style>
+<title>Daniel | Cybersecurity Terminal</title><style>
 body{
 margin:0;
 background:black;
@@ -18,14 +18,30 @@ left:0;
 z-index:-1;
 }
 
-#terminal{
-padding:20px;
+#container{
+display:flex;
 height:100vh;
+}
+
+#terminal{
+flex:2;
+padding:20px;
 overflow-y:auto;
 }
 
+#panel{
+flex:1;
+border-left:1px solid #00ff9c;
+padding:20px;
+background:rgba(0,0,0,0.85);
+}
+
+h2{
+margin-top:0;
+}
+
 .line{
-margin:6px 0;
+margin:5px 0;
 }
 
 input{
@@ -38,31 +54,34 @@ outline:none;
 width:80%;
 }
 
-.banner{
-white-space:pre-line;
-margin-bottom:20px;
+.status{
+margin-bottom:15px;
+border:1px solid #00ff9c;
+padding:10px;
 }
 
-.login{
-color:#00ff9c;
-margin-bottom:20px;
+.blink{
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0}
 }
 </style></head><body><canvas id="matrix"></canvas>
 
-<div id="terminal"><div class="banner">
-██████╗  █████╗ ███╗   ██╗██╗███████╗██╗     
-██╔══██╗██╔══██╗████╗  ██║██║██╔════╝██║     
-██║  ██║███████║██╔██╗ ██║██║█████╗  ██║     
-██║  ██║██╔══██║██║╚██╗██║██║██╔══╝  ██║     
-██████╔╝██║  ██║██║ ╚████║██║███████╗███████╗
-╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝Secure Cyber Terminal v1.0
-Initializing system...
+<div id="container"><div id="terminal"><div>
+██████╗  █████╗ ███╗   ██╗██╗███████╗██╗
+Cybersecurity Command Console
+</div><div id="scan"></div><div id="output"></div><div class="line">
+Daniel@secure:~$ <input id="cmd" autofocus>
+</div></div><div id="panel"><h2>System Monitor</h2><div class="status" id="visitor"></div>
+<div class="status" id="security"></div>
+<div class="status" id="network"></div><h2>Profile</h2>
+<p>Name: Daniel</p>
+<p>Role: Cybersecurity Student</p>
+<p>Focus: Ethical Hacking</p></div></div><script>
 
-</div><div class="login" id="loginText"></div><div id="output"></div><div class="line">
-Daniel@terminal:~$ <input id="cmd" autofocus>
-</div></div><script>
-
-/* MATRIX EFFECT */
+/* MATRIX */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
@@ -96,61 +115,74 @@ drops[i]++;
 
 setInterval(draw,35);
 
-/* LOGIN SIMULATION */
-const login = document.getElementById("loginText");
+/* FAKE VISITOR DETECTION */
+document.getElementById("visitor").innerHTML =
+"Visitor Detected<br>Status: Active";
 
-setTimeout(()=>login.innerHTML="Accessing secure server...",1000);
-setTimeout(()=>login.innerHTML="Bypassing firewall...",2000);
-setTimeout(()=>login.innerHTML="Connection established.",3000);
+document.getElementById("security").innerHTML =
+"Firewall: Enabled<br>Threat Level: Low";
 
-/* TERMINAL COMMANDS */
+document.getElementById("network").innerHTML =
+"Network: Secure<br>Monitoring: ON";
+
+/* SCAN ANIMATION */
+const scan = document.getElementById("scan");
+
+let steps = [
+"Initializing secure connection...",
+"Scanning visitor device...",
+"Checking security protocols...",
+"System ready."
+];
+
+let i = 0;
+
+function runScan(){
+if(i < steps.length){
+let line = document.createElement("div");
+line.className="line";
+line.textContent = steps[i];
+scan.appendChild(line);
+i++;
+setTimeout(runScan,1200);
+}
+}
+
+runScan();
+
+/* TERMINAL */
 const cmd = document.getElementById("cmd");
 const output = document.getElementById("output");
 
 const commands = {
-help: `
-Commands available:
-about
-skills
-projects
-contact
-whoami
-clear
-`,
-about: "Daniel - Cybersecurity learner and future ethical hacker.",
-skills: "Linux | Networking | HTML | Cybersecurity basics",
-projects: `
-Cybersecurity Portfolio
-Practice Labs
-CTF Challenges
-`,
+help: "Commands: about, skills, projects, contact, whoami, clear",
+about: "Daniel - Future Ethical Hacker learning cybersecurity.",
+skills: "Linux | Networking | Web Security | Python (learning)",
+projects: "Cybersecurity Portfolio | Security Labs | Practice Challenges",
 contact: "GitHub: https://github.com/power504-jpg",
-whoami: "User: Guest | Status: Monitoring system..."
+whoami: "Guest user connected to secure terminal"
 };
 
 cmd.addEventListener("keydown", function(e){
 if(e.key === "Enter"){
 
-const value = cmd.value.trim().toLowerCase();
+let value = cmd.value.trim().toLowerCase();
 
-const line = document.createElement("div");
-line.className="line";
-line.textContent = "Daniel@terminal:~$ " + value;
+let line = document.createElement("div");
+line.textContent = "Daniel@secure:~$ " + value;
 output.appendChild(line);
 
 if(value === "clear"){
 output.innerHTML="";
 }
 else if(commands[value]){
-const response = document.createElement("div");
-response.className="line";
-response.textContent = commands[value];
-output.appendChild(response);
+let res = document.createElement("div");
+res.textContent = commands[value];
+output.appendChild(res);
 }
 else{
-const err = document.createElement("div");
-err.className="line";
-err.textContent = "Command not found. Type help.";
+let err = document.createElement("div");
+err.textContent = "Command not recognized.";
 output.appendChild(err);
 }
 
