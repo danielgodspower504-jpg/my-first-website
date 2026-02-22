@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel | Cybersecurity Portfolio</title><style>
+<title>Daniel | Cyber Terminal</title><style>
 body{
 margin:0;
 background:black;
@@ -18,35 +18,14 @@ left:0;
 z-index:-1;
 }
 
-#loginScreen{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.loginBox{
-border:1px solid #00ff9c;
-padding:30px;
-text-align:center;
-box-shadow:0 0 20px #00ff9c;
-background:rgba(0,0,0,0.7);
-}
-
-button{
-background:black;
-color:#00ff9c;
-border:1px solid #00ff9c;
-padding:10px 20px;
-cursor:pointer;
-}
-
 #terminal{
-display:none;
 padding:20px;
 height:100vh;
 overflow-y:auto;
-background:rgba(0,0,0,0.6);
+}
+
+.line{
+margin:6px 0;
 }
 
 input{
@@ -59,102 +38,126 @@ outline:none;
 width:80%;
 }
 
-.line{
-margin:5px 0;
+.banner{
+white-space:pre-line;
+margin-bottom:20px;
+}
+
+.login{
+color:#00ff9c;
+margin-bottom:20px;
 }
 </style></head><body><canvas id="matrix"></canvas>
 
-<div id="loginScreen">
-<div class="loginBox">
-<h2>Secure Access</h2>
-<p>Cybersecurity Portfolio</p>
-<button onclick="enterSite()">Login</button>
-</div>
-</div><div id="terminal">
-<div class="line">Daniel@portfolio:~$ type help</div>
-<div id="output"></div><div class="line">
-Daniel@portfolio:~$ <input id="commandInput" autofocus>
-</div>
-</div><script>
-function enterSite(){
-document.getElementById("loginScreen").style.display="none";
-document.getElementById("terminal").style.display="block";
-}
+<div id="terminal"><div class="banner">
+██████╗  █████╗ ███╗   ██╗██╗███████╗██╗     
+██╔══██╗██╔══██╗████╗  ██║██║██╔════╝██║     
+██║  ██║███████║██╔██╗ ██║██║█████╗  ██║     
+██║  ██║██╔══██║██║╚██╗██║██║██╔══╝  ██║     
+██████╔╝██║  ██║██║ ╚████║██║███████╗███████╗
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝Secure Cyber Terminal v1.0
+Initializing system...
 
-const input = document.getElementById("commandInput");
-const output = document.getElementById("output");
+</div><div class="login" id="loginText"></div><div id="output"></div><div class="line">
+Daniel@terminal:~$ <input id="cmd" autofocus>
+</div></div><script>
 
-const commands = {
-help: "Commands: help, about, skills, projects, contact, clear",
-about: "Hi, I am Daniel. I am learning cybersecurity and web development.",
-skills: "Cybersecurity Basics | HTML | CSS | Beginner Python",
-projects: "Cybersecurity Portfolio Website | Labs coming soon",
-contact: "GitHub: https://github.com/power504-jpg"
-};
-
-input.addEventListener("keydown", function(e){
-if(e.key === "Enter"){
-const cmd = input.value.trim().toLowerCase();
-
-const line = document.createElement("div");
-line.className="line";
-line.textContent = "Daniel@portfolio:~$ " + cmd;
-output.appendChild(line);
-
-if(cmd === "clear"){
-output.innerHTML="";
-}else if(commands[cmd]){
-const res = document.createElement("div");
-res.className="line";
-res.textContent = commands[cmd];
-output.appendChild(res);
-}else{
-const err = document.createElement("div");
-err.className="line";
-err.textContent = "Command not found";
-output.appendChild(err);
-}
-
-input.value="";
-window.scrollTo(0, document.body.scrollHeight);
-}
-});
-
+/* MATRIX EFFECT */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
 
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const letters = "01";
 const fontSize = 14;
 const columns = canvas.width / fontSize;
 const drops = [];
 
-for(let i = 0; i < columns; i++){
-drops[i] = 1;
-}
+for(let x=0;x<columns;x++) drops[x]=1;
 
 function draw(){
-ctx.fillStyle = "rgba(0,0,0,0.05)";
+ctx.fillStyle="rgba(0,0,0,0.05)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle = "#00ff9c";
-ctx.font = fontSize + "px monospace";
+ctx.fillStyle="#00ff9c";
+ctx.font=fontSize+"px monospace";
 
-for(let i = 0; i < drops.length; i++){
-const text = letters[Math.floor(Math.random()*letters.length)];
-ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+for(let i=0;i<drops.length;i++){
+const text=letters.charAt(Math.floor(Math.random()*letters.length));
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
 
-if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){
-drops[i] = 0;
-}
+if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+drops[i]=0;
 
 drops[i]++;
 }
 }
 
-setInterval(draw, 35);
+setInterval(draw,35);
+
+/* LOGIN SIMULATION */
+const login = document.getElementById("loginText");
+
+setTimeout(()=>login.innerHTML="Accessing secure server...",1000);
+setTimeout(()=>login.innerHTML="Bypassing firewall...",2000);
+setTimeout(()=>login.innerHTML="Connection established.",3000);
+
+/* TERMINAL COMMANDS */
+const cmd = document.getElementById("cmd");
+const output = document.getElementById("output");
+
+const commands = {
+help: `
+Commands available:
+about
+skills
+projects
+contact
+whoami
+clear
+`,
+about: "Daniel - Cybersecurity learner and future ethical hacker.",
+skills: "Linux | Networking | HTML | Cybersecurity basics",
+projects: `
+Cybersecurity Portfolio
+Practice Labs
+CTF Challenges
+`,
+contact: "GitHub: https://github.com/power504-jpg",
+whoami: "User: Guest | Status: Monitoring system..."
+};
+
+cmd.addEventListener("keydown", function(e){
+if(e.key === "Enter"){
+
+const value = cmd.value.trim().toLowerCase();
+
+const line = document.createElement("div");
+line.className="line";
+line.textContent = "Daniel@terminal:~$ " + value;
+output.appendChild(line);
+
+if(value === "clear"){
+output.innerHTML="";
+}
+else if(commands[value]){
+const response = document.createElement("div");
+response.className="line";
+response.textContent = commands[value];
+output.appendChild(response);
+}
+else{
+const err = document.createElement("div");
+err.className="line";
+err.textContent = "Command not found. Type help.";
+output.appendChild(err);
+}
+
+cmd.value="";
+window.scrollTo(0,document.body.scrollHeight);
+}
+});
 </script></body>
 </html>
 
