@@ -1,190 +1,86 @@
-<!DOCTYPE html><html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel | Cybersecurity Portfolio</title><style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: black;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
-}
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
 
-section {
-  padding: 60px 20px;
-}
 
-.profile-img {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  border: 5px solid #00ffcc;
-  box-shadow: 0 0 30px #00ffcc;
-  object-fit: cover;
-}
 
-h1 {
-  font-size: 40px;
-  color: #00ffd5;
-}
 
-h2 {
-  color: #00ffd5;
-}
 
-#typing {
-  font-size: 20px;
-  color: #00ffcc;
-  height: 30px;
-}
 
-.skills {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
 
-.skill {
-  background: #001f1c;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid #00ffcc;
-}
 
-.project {
-  background: #001f1c;
-  margin: 15px auto;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #00ffcc;
-  max-width: 700px;
-}
 
-button {
-  margin-top: 25px;
-  padding: 14px 35px;
-  background: #00ffcc;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 0 20px #00ffcc;
-}
 
-button:hover {
-  background: #00e6b8;
-}
+Welcome to My Website
 
-.links a {
-  color: #00ffd5;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
-}
 
-footer {
-  margin-top: 40px;
-  padding: 20px;
-  color: #888;
-}
-</style></head><body><canvas id="matrix"></canvas>
+Cybersecurity Student | Future Ethical Hacker
 
-<section>
-<img src="profile.jpg" class="profile-img">
-<h1>Welcome to My Website</h1>
-<p id="typing"></p>
-<p>I’m learning coding, cybersecurity and ethical hacking.</p>
-</section><section>
-<h2>About Me</h2>
-<p>My name is Daniel. I’m starting my journey into cybersecurity and becoming a future ethical hacker.</p>
-</section><section>
-<h2>Skills</h2>
-<div class="skills">
-<div class="skill">HTML</div>
-<div class="skill">Cybersecurity</div>
-<div class="skill">Networking</div>
-<div class="skill">Linux</div>
-<div class="skill">Ethical Hacking</div>
-</div>
-</section><section>
-<h2>Projects</h2>
-<div class="project">
-<h3>My First Website</h3>
-<p>This portfolio website hosted on GitHub Pages.</p>
-</div><div class="project">
-<h3>Cybersecurity Learning</h3>
-<p>Currently learning penetration testing and security basics.</p>
-</div>
-</section><section>
-<h2>Contact</h2>
-<div class="links">
-<a href="#">Instagram</a>
-<a href="#">Facebook</a>
-<a href="mailto:your@email.com">Email</a>
-</div><button onclick="showMessage()">Contact Me</button>
 
-</section><footer>
+I’m learning programming, cybersecurity, and ethical hacking.
+
+
+
+
+
+About Me
+
+
+My name is Daniel. I'm starting my journey into cybersecurity and working toward becoming an ethical hacker.
+
+
+
+
+
+
+Skills
+
+
+HTML
+
+
+CSS
+
+
+Cybersecurity Basics
+
+
+Learning Python
+
+
+
+
+
+
+Projects
+
+
+My First Portfolio Website
+
+
+Future Cybersecurity Labs
+
+
+CTF Practice (Coming Soon)
+
+
+
+
+
+
+Contact
+
+
+Email: your-email@example.com
+
+
+GitHub: https://github.com/power504-jpg
+
+
+
+
+
 © 2026 Daniel | Cybersecurity Portfolio
-</footer><script>
-const text = "Cybersecurity Student | Future Ethical Hacker";
-let i = 0;
 
-function typeEffect() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect, 40);
-  }
-}
-typeEffect();
 
-function showMessage() {
-  alert("Thanks for visiting my website!");
-}
 
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
 
-const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-
-const drops = [];
-for (let x = 0; x < columns; x++) {
-  drops[x] = 1;
-}
-
-function draw() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#00ffcc";
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = letters.charAt(Math.floor(Math.random() * letters.length));
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-      drops[i] = 0;
-
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 33);
-</script></body>
-</html>
