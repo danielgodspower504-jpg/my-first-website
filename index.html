@@ -1,158 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure Access Membership</title>
-
-<style>
+<title>SecureHub Membership</title><style>
 body{
-  font-family: Arial, sans-serif;
-  margin:0;
-  background:#0f172a;
-  color:white;
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0f172a;
+color:white;
 }
 
 header{
-  background:#020617;
-  padding:20px;
-  text-align:center;
-}
-
-nav{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  padding:10px;
+background:#020617;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 nav a{
-  color:white;
-  text-decoration:none;
+margin:0 10px;
+color:white;
+text-decoration:none;
 }
 
 .hero{
-  text-align:center;
-  padding:60px 20px;
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#0f172a,#020617);
 }
 
 .hero h1{
-  font-size:40px;
+font-size:42px;
 }
 
 .btn{
-  background:#14b8a6;
-  padding:12px 25px;
-  border:none;
-  border-radius:6px;
-  color:white;
-  cursor:pointer;
+background:#22c55e;
+padding:12px 25px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white;
+font-size:16px;
 }
 
 .container{
-  max-width:900px;
-  margin:auto;
-  padding:40px 20px;
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+.pricing{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .card{
-  background:#1e293b;
-  padding:20px;
-  margin:15px 0;
-  border-radius:10px;
+background:#1e293b;
+padding:25px;
+border-radius:10px;
+text-align:center;
+}
+
+.card h3{
+margin-top:0;
+}
+
+.card p{
+font-size:22px;
+}
+
+form{
+max-width:400px;
+margin:auto;
 }
 
 input{
-  padding:10px;
-  width:100%;
-  margin:10px 0;
-  border:none;
-  border-radius:6px;
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+}
+
+.dashboard{
+display:none;
+text-align:center;
+padding:60px 20px;
 }
 
 footer{
-  text-align:center;
-  padding:20px;
-  background:#020617;
-  margin-top:40px;
+background:#020617;
+padding:20px;
+text-align:center;
+margin-top:40px;
 }
-</style>
-</head>
-
-<body>
-
-<header>
-<h2>Secure Access</h2>
+</style></head><body><header>
+<h2>SecureHub</h2>
 <nav>
 <a href="#">Home</a>
-<a href="#membership">Membership</a>
+<a href="#pricing">Pricing</a>
 <a href="#login">Login</a>
 </nav>
-</header>
-
-<section class="hero">
-<h1>Cybersecurity Membership</h1>
-<p>Join our secure members-only platform</p>
-<button class="btn" onclick="scrollToMembership()">Join Now</button>
-</section>
-
-<div class="container" id="membership">
-
-<div class="card">
-<h3>Basic Plan</h3>
+</header><section class="hero">
+<h1>Premium Members Platform</h1>
+<p>Access exclusive tools and resources</p>
+<button class="btn" onclick="scrollPricing()">View Plans</button>
+</section><section class="container" id="pricing">
+<h2 style="text-align:center;">Membership Plans</h2><div class="pricing"><div class="card">
+<h3>Starter</h3>
 <p>$10 / month</p>
-<button class="btn">Subscribe</button>
-</div>
-
-<div class="card">
-<h3>Pro Plan</h3>
+<button class="btn">Join</button>
+</div><div class="card">
+<h3>Pro</h3>
 <p>$25 / month</p>
-<button class="btn">Subscribe</button>
-</div>
-
-<div class="card">
-<h3>Elite Plan</h3>
+<button class="btn">Join</button>
+</div><div class="card">
+<h3>Elite</h3>
 <p>$50 / month</p>
-<button class="btn">Subscribe</button>
-</div>
-
-</div>
-
-<div class="container" id="login">
-<h2>Member Login</h2>
-
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
-<button class="btn" onclick="login()">Login</button>
-
-<p id="message"></p>
-
-</div>
-
-<footer>
-<p>© 2026 Secure Access</p>
-</footer>
-
-<script>
-function scrollToMembership(){
-  document.getElementById("membership").scrollIntoView({
-    behavior:"smooth"
-  });
+<button class="btn">Join</button>
+</div></div>
+</section><section class="container" id="login">
+<h2 style="text-align:center;">Member Login</h2><form onsubmit="login(event)">
+<input type="text" id="user" placeholder="Username" required>
+<input type="password" id="pass" placeholder="Password" required>
+<button class="btn" type="submit">Login</button>
+</form><p id="msg" style="text-align:center;"></p></section><section class="dashboard" id="dashboard">
+<h1>Welcome to the Members Area</h1>
+<p>You now have access to premium content.</p>
+<button class="btn" onclick="logout()">Logout</button>
+</section><footer>
+<p>© 2026 SecureHub Membership</p>
+</footer><script>
+function scrollPricing(){
+document.getElementById("pricing").scrollIntoView({
+behavior:"smooth"
+});
 }
 
-function login(){
-  let user = document.getElementById("username").value;
-  let pass = document.getElementById("password").value;
+function login(e){
+e.preventDefault();
 
-  if(user === "admin" && pass === "1234"){
-    document.getElementById("message").innerText =
-    "Login successful. Welcome!";
-  }else{
-    document.getElementById("message").innerText =
-    "Invalid login details.";
-  }
+let user = document.getElementById("user").value;
+let pass = document.getElementById("pass").value;
+
+if(user === "member" && pass === "1234"){
+document.getElementById("msg").innerText = "";
+document.getElementById("login").style.display="none";
+document.getElementById("dashboard").style.display="block";
 }
-</script>
+else{
+document.getElementById("msg").innerText = "Incorrect login details";
+}
+}
 
-</body>
+function logout(){
+location.reload();
+}
+</script></body>
 </html>
