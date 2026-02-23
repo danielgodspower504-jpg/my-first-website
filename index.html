@@ -1,162 +1,17 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SecureHub Membership</title><style>
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#0f172a;
-color:white;
-}
+  <title>Daniel Web Services</title>
+</head>
 
-header{
-background:#020617;
-padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+<body>
+  <h1>Welcome to Daniel Godspower Services</h1>
+  <p>I create simple websites for businesses.</p>
 
-nav a{
-margin:0 10px;
-color:white;
-text-decoration:none;
-}
+  <h2>My Services</h2>
+  <p>Business websites</p>
+  <p>Landing pages</p>
 
-.hero{
-text-align:center;
-padding:80px 20px;
-background:linear-gradient(135deg,#0f172a,#020617);
-}
-
-.hero h1{
-font-size:42px;
-}
-
-.btn{
-background:#22c55e;
-padding:12px 25px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-color:white;
-font-size:16px;
-}
-
-.container{
-max-width:1000px;
-margin:auto;
-padding:40px 20px;
-}
-
-.pricing{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:#1e293b;
-padding:25px;
-border-radius:10px;
-text-align:center;
-}
-
-.card h3{
-margin-top:0;
-}
-
-.card p{
-font-size:22px;
-}
-
-form{
-max-width:400px;
-margin:auto;
-}
-
-input{
-width:100%;
-padding:12px;
-margin:10px 0;
-border:none;
-border-radius:6px;
-}
-
-.dashboard{
-display:none;
-text-align:center;
-padding:60px 20px;
-}
-
-footer{
-background:#020617;
-padding:20px;
-text-align:center;
-margin-top:40px;
-}
-</style></head><body><header>
-<h2>SecureHub</h2>
-<nav>
-<a href="#">Home</a>
-<a href="#pricing">Pricing</a>
-<a href="#login">Login</a>
-</nav>
-</header><section class="hero">
-<h1>Premium Members Platform</h1>
-<p>Access exclusive tools and resources</p>
-<button class="btn" onclick="scrollPricing()">View Plans</button>
-</section><section class="container" id="pricing">
-<h2 style="text-align:center;">Membership Plans</h2><div class="pricing"><div class="card">
-<h3>Starter</h3>
-<p>$10 / month</p>
-<button class="btn">Join</button>
-</div><div class="card">
-<h3>Pro</h3>
-<p>$25 / month</p>
-<button class="btn">Join</button>
-</div><div class="card">
-<h3>Elite</h3>
-<p>$50 / month</p>
-<button class="btn">Join</button>
-</div></div>
-</section><section class="container" id="login">
-<h2 style="text-align:center;">Member Login</h2><form onsubmit="login(event)">
-<input type="text" id="user" placeholder="Username" required>
-<input type="password" id="pass" placeholder="Password" required>
-<button class="btn" type="submit">Login</button>
-</form><p id="msg" style="text-align:center;"></p></section><section class="dashboard" id="dashboard">
-<h1>Welcome to the Members Area</h1>
-<p>You now have access to premium content.</p>
-<button class="btn" onclick="logout()">Logout</button>
-</section><footer>
-<p>© 2026 SecureHub Membership</p>
-</footer><script>
-function scrollPricing(){
-document.getElementById("pricing").scrollIntoView({
-behavior:"smooth"
-});
-}
-
-function login(e){
-e.preventDefault();
-
-let user = document.getElementById("user").value;
-let pass = document.getElementById("pass").value;
-
-if(user === "member" && pass === "1234"){
-document.getElementById("msg").innerText = "";
-document.getElementById("login").style.display="none";
-document.getElementById("dashboard").style.display="block";
-}
-else{
-document.getElementById("msg").innerText = "Incorrect login details";
-}
-}
-
-function logout(){
-location.reload();
-}
-</script></body>
+  <button>Contact Me</button>
+</body>
 </html>
