@@ -1,213 +1,158 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel | Cybersecurity Dashboard</title><style>
+<title>Secure Access Membership</title>
+
+<style>
 body{
-margin:0;
-background:#000;
-color:#00ff9c;
-font-family:monospace;
-overflow:hidden;
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#0f172a;
+  color:white;
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+header{
+  background:#020617;
+  padding:20px;
+  text-align:center;
 }
 
-#login{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
+nav{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  padding:10px;
 }
 
-#login input{
-background:black;
-border:1px solid #00ff9c;
-color:#00ff9c;
-padding:10px;
-margin-top:10px;
+nav a{
+  color:white;
+  text-decoration:none;
 }
 
-#dashboard{
-display:none;
-height:100vh;
+.hero{
+  text-align:center;
+  padding:60px 20px;
 }
 
-#topbar{
-display:flex;
-justify-content:space-between;
-padding:10px;
-border-bottom:1px solid #00ff9c;
+.hero h1{
+  font-size:40px;
 }
 
-#container{
-display:flex;
-height:calc(100vh - 40px);
+.btn{
+  background:#14b8a6;
+  padding:12px 25px;
+  border:none;
+  border-radius:6px;
+  color:white;
+  cursor:pointer;
 }
 
-#terminal{
-flex:2;
-padding:20px;
-overflow:auto;
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
 }
 
-#panel{
-flex:1;
-border-left:1px solid #00ff9c;
-padding:20px;
-background:rgba(0,0,0,0.85);
-}
-
-.status{
-border:1px solid #00ff9c;
-padding:10px;
-margin-bottom:10px;
+.card{
+  background:#1e293b;
+  padding:20px;
+  margin:15px 0;
+  border-radius:10px;
 }
 
 input{
-background:black;
-border:none;
-color:#00ff9c;
-outline:none;
-width:80%;
+  padding:10px;
+  width:100%;
+  margin:10px 0;
+  border:none;
+  border-radius:6px;
 }
 
-.line{margin:4px 0;}
-</style></head><body><canvas id="matrix"></canvas>
+footer{
+  text-align:center;
+  padding:20px;
+  background:#020617;
+  margin-top:40px;
+}
+</style>
+</head>
 
-<div id="login">
+<body>
+
+<header>
 <h2>Secure Access</h2>
-<p>Enter Access Key</p>
-<input id="key" placeholder="access key">
-<br><br>
-<button onclick="enter()">Enter</button>
-<p>Hint: access</p>
-</div><div id="dashboard"><div id="topbar">
-<div>Cybersecurity Control Center</div>
-<div id="clock"></div>
-<div id="visitors"></div>
-</div><div id="container"><div id="terminal">
-<div>Secure Terminal Ready</div>
-<div id="output"></div>
-<div class="line">
-Daniel@system:~$ <input id="cmd">
+<nav>
+<a href="#">Home</a>
+<a href="#membership">Membership</a>
+<a href="#login">Login</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Cybersecurity Membership</h1>
+<p>Join our secure members-only platform</p>
+<button class="btn" onclick="scrollToMembership()">Join Now</button>
+</section>
+
+<div class="container" id="membership">
+
+<div class="card">
+<h3>Basic Plan</h3>
+<p>$10 / month</p>
+<button class="btn">Subscribe</button>
 </div>
-</div><div id="panel"><h3>System Status</h3><div class="status">Firewall: Active</div>
-<div class="status">Encryption: Enabled</div>
-<div class="status">Threat Level: Low</div><h3>Skills</h3>
-<p>Linux</p>
-<p>Networking</p>
-<p>Web Security</p>
-<p>Python</p><h3>Projects</h3>
-<p>Security Lab</p>
-<p>Practice Exploits</p>
-<p>Cyber Tools</p></div></div></div><script>
 
-/* LOGIN */
-function enter(){
-let key = document.getElementById("key").value;
-if(key === "access"){
-document.getElementById("login").style.display="none";
-document.getElementById("dashboard").style.display="block";
-}
-else{
-alert("Access Denied");
-}
-}
+<div class="card">
+<h3>Pro Plan</h3>
+<p>$25 / month</p>
+<button class="btn">Subscribe</button>
+</div>
 
-/* MATRIX */
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
+<div class="card">
+<h3>Elite Plan</h3>
+<p>$50 / month</p>
+<button class="btn">Subscribe</button>
+</div>
 
-canvas.height=window.innerHeight;
-canvas.width=window.innerWidth;
+</div>
 
-const letters="01";
-const fontSize=14;
-const columns=canvas.width/fontSize;
-const drops=[];
+<div class="container" id="login">
+<h2>Member Login</h2>
 
-for(let x=0;x<columns;x++) drops[x]=1;
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button class="btn" onclick="login()">Login</button>
 
-function draw(){
-ctx.fillStyle="rgba(0,0,0,0.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
+<p id="message"></p>
 
-ctx.fillStyle="#00ff9c";
-ctx.font=fontSize+"px monospace";
+</div>
 
-for(let i=0;i<drops.length;i++){
-let text=letters.charAt(Math.floor(Math.random()*letters.length));
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+<footer>
+<p>© 2026 Secure Access</p>
+</footer>
 
-if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
-drops[i]=0;
-
-drops[i]++;
-}
+<script>
+function scrollToMembership(){
+  document.getElementById("membership").scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
-setInterval(draw,35);
+function login(){
+  let user = document.getElementById("username").value;
+  let pass = document.getElementById("password").value;
 
-/* CLOCK */
-function updateClock(){
-let now=new Date();
-document.getElementById("clock").textContent=now.toLocaleTimeString();
+  if(user === "admin" && pass === "1234"){
+    document.getElementById("message").innerText =
+    "Login successful. Welcome!";
+  }else{
+    document.getElementById("message").innerText =
+    "Invalid login details.";
+  }
 }
-setInterval(updateClock,1000);
+</script>
 
-/* VISITOR COUNTER */
-let count=Math.floor(Math.random()*100)+1;
-document.getElementById("visitors").textContent="Visitors: "+count;
-
-/* TERMINAL */
-const cmd=document.getElementById("cmd");
-const output=document.getElementById("output");
-
-const commands={
-help:"Commands: about, skills, projects, contact, clear",
-about:"Daniel - Future Cybersecurity Expert",
-skills:"Linux | Networking | Web Security | Python",
-projects:"Cybersecurity Labs and Tools",
-contact:"GitHub: https://github.com/",
-};
-
-cmd.addEventListener("keydown",function(e){
-if(e.key==="Enter"){
-let value=cmd.value.toLowerCase();
-
-let line=document.createElement("div");
-line.textContent="Daniel@system:~$ "+value;
-output.appendChild(line);
-
-if(value==="clear"){
-output.innerHTML="";
-}
-else if(commands[value]){
-let res=document.createElement("div");
-res.textContent=commands[value];
-output.appendChild(res);
-}
-else{
-let err=document.createElement("div");
-err.textContent="Unknown command";
-output.appendChild(err);
-}
-
-cmd.value="";
-}
-});
-</script></body>
+</body>
 </html>
-
-
-
-
-
-
