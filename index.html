@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professional Messaging Website</title>
+<title>Premium Mobile Numbers</title>
 
 <style>
 body{
@@ -13,106 +13,115 @@ background:#f5f7fb;
 }
 
 header{
-background:#0f172a;
+background:#0a66ff;
 color:white;
 padding:20px;
 text-align:center;
 }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
-
-.profile{
+nav{
+background:#111;
+padding:10px;
 text-align:center;
-margin-top:20px;
 }
 
-.profile img{
-width:200px;
-border-radius:10px;
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+section{
+padding:40px;
 }
 
 .card{
 background:white;
 padding:20px;
-margin-top:20px;
+margin:20px;
 border-radius:10px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
 button{
-background:#2563eb;
+background:#0a66ff;
 color:white;
 border:none;
-padding:12px 20px;
+padding:10px 20px;
 border-radius:6px;
 cursor:pointer;
 }
 
-button:hover{
-background:#1d4ed8;
-}
-
 footer{
+background:#111;
+color:white;
 text-align:center;
 padding:20px;
-margin-top:40px;
-color:#666;
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-<h1>Professional Messaging Contact</h1>
+<h1>Premium Mobile Numbers Store</h1>
+<p>Buy Exclusive Phone Numbers Instantly</p>
 </header>
 
-<div class="container">
+<nav>
+<a href="#numbers">Available Numbers</a>
+<a href="#signup">Sign Up</a>
+<a href="#contact">Contact</a>
+</nav>
 
-<div class="profile">
-<img src="ebb0ccc5c078b11052c7ee3a486944ee.jpg"
-<h2>Mohammed bin Rashid Al Fazza</h2>
-<p>Official Contact & Messaging Page</p>
+<section id="numbers">
+<h2>Available Numbers</h2>
+
+<div class="card">
+<h3>+1 (367) 333-4412</h3>
+<p>Premium easy-to-remember number</p>
+<p>Price: $50</p>
+<button>Buy Now</button>
 </div>
 
 <div class="card">
-<h3>About</h3>
-<p>This professional messaging website allows visitors to send messages and connect professionally.</p>
+<h3>+1 (555) 880-1122</h3>
+<p>Business class number</p>
+<p>Price: $75</p>
+<button>Buy Now</button>
 </div>
 
 <div class="card">
-<h3>Contact</h3>
-<p>Phone: +1 (367) 333-4412</p>
-<button onclick="sendMessage()">Send Message</button>
+<h3>+1 (222) 900-7788</h3>
+<p>VIP number</p>
+<p>Price: $120</p>
+<button>Buy Now</button>
 </div>
 
-<div class="card">
-<h3>Message Form</h3>
-<input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;">
-<input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;">
-<textarea placeholder="Your Message" style="width:100%;padding:10px;height:120px;"></textarea>
-<br><br>
+</section>
 
-<a href="https://wa.me/13673334412">
-<button>Send Message</button>
-</a>
+<section id="signup">
+<h2>Create Account</h2>
 
-</div>
+<form>
+<input type="text" placeholder="Full Name" required><br><br>
+<input type="email" placeholder="Email Address" required><br><br>
+<input type="password" placeholder="Password" required><br><br>
+<button type="submit">Sign Up</button>
+</form>
+
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: support@mobilenumbershop.com</p>
+<p>WhatsApp: +1 (367) 333-4412</p>
+</section>
 
 <footer>
-© 2026 Professional Messaging Website
+<p>© 2026 Premium Mobile Numbers</p>
 </footer>
-
-<script>
-function sendMessage(){
-alert("Your message has been sent successfully!");
-}
-</script>
 
 </body>
 </html>
