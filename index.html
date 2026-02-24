@@ -3,92 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Landing Page</title>
+<title>Professional Messaging Website</title>
+
 <style>
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f5f7fb;
+font-family: Arial, sans-serif;
+margin:0;
+background:#f5f7fb;
 }
+
 header{
-  background:#0f172a;
-  color:white;
-  padding:20px;
-  text-align:center;
+background:#0f172a;
+color:white;
+padding:20px;
+text-align:center;
 }
-.hero{
-  padding:60px 20px;
-  text-align:center;
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
 }
-.hero h1{
-  font-size:32px;
-  margin-bottom:10px;
+
+.profile{
+text-align:center;
+margin-top:20px;
 }
-.hero p{
-  color:#555;
+
+.profile img{
+width:200px;
+border-radius:10px;
 }
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
-  background:#06b6d4;
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-}
-.services{
-  padding:40px 20px;
-  display:grid;
-  gap:20px;
-}
+
 .card{
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.05);
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
 footer{
-  background:#0f172a;
-  color:white;
-  text-align:center;
-  padding:15px;
-  margin-top:40px;
+text-align:center;
+padding:20px;
+margin-top:40px;
+color:#666;
 }
 </style>
+
 </head>
 
 <body>
 
 <header>
-<h2>My Web Services</h2>
+<h1>Professional Messaging Contact</h1>
 </header>
 
-<section class="hero">
-<h1>I Build Simple Websites</h1>
-<p>Landing pages, portfolios, and small business websites.</p>
-<a href="#" class="btn">Contact Me</a>
-</section>
+<div class="container">
 
-<section class="services">
-<div class="card">
-<h3>Business Website</h3>
-<p>I create clean and modern business websites.</p>
+<div class="profile">
+<img src="profile.jpg" alt="Profile">
+<h2>Hamdan bin Mohammed bin Rashid Al Maktoum</h2>
+<p>Official Contact & Messaging Page</p>
 </div>
 
 <div class="card">
-<h3>Landing Page</h3>
-<p>Perfect for products, promotions, and brands.</p>
+<h3>About</h3>
+<p>This professional messaging website allows visitors to send messages and connect professionally.</p>
 </div>
 
 <div class="card">
-<h3>Portfolio</h3>
-<p>Showcase your work professionally online.</p>
+<h3>Contact</h3>
+<p>Phone: +1 (367) 333-4412</p>
+<button onclick="sendMessage()">Send Message</button>
 </div>
-</section>
+
+<div class="card">
+<h3>Message Form</h3>
+<input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;">
+<input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;">
+<textarea placeholder="Your Message" style="width:100%;padding:10px;height:120px;"></textarea>
+<br><br>
+<button onclick="sendMessage()">Submit Message</button>
+</div>
+
+</div>
 
 <footer>
-<p>© 2026 My Web Services</p>
+© 2026 Professional Messaging Website
 </footer>
+
+<script>
+function sendMessage(){
+alert("Your message has been sent successfully!");
+}
+</script>
 
 </body>
 </html>
